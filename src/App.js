@@ -80,10 +80,18 @@ class Clock extends Component {
 
   //PLAY AND PAUSE METHODS TO SET INTERVALS
   startPlay(){
-    this.setState(() => ({
-      playing: true,
-      icon: 'whatever to start'
-    }));
+    if(!this.state.active){
+      this.setState(() => ({
+        playing: true,
+        icon: 'whatever to start',
+        active: true
+      }));
+    }else{
+      this.setState(() => ({
+        playing: true,
+        icon: 'whatever to start'
+      }));
+    }
     this.state.session === 'session' ? counter = setInterval(this.timer,1000) : breakCounter = setInterval(this.timerBreak,1000);
   }
   pausePlay(){
@@ -104,33 +112,92 @@ class Clock extends Component {
   //HANDLE COUNTERS FOR BREAKS AND WORK MINUTES
   sessionIncrement() {
     if (this.state.minutes < 60) {
-      this.setState((prevState) => ({
-        minutes: prevState.minutes + 1
-      }));
-    }
+      if(!this.state.active){
+        this.setState((prevState) => ({
+          minutes: prevState.minutes + 1,
+          minutesSeconds: (prevState.minutes + 1)*60,
+          timeDisplayed: timeFormat((prevState.minutes + 1)*60)
+        }))
+      }else{
+        if(this.state.session === 'break'){
+          this.setState((prevState) => ({
+            minutes: prevState.minutes + 1,
+            minutesSeconds: (prevState.minutes + 1)*60,
+          }))
+        }else{
+          this.setState((prevState) => ({
+            minutes: prevState.minutes + 1,
+          }))
+        }
+      }
   }
-
+  }
   sessionDecrement() {
     if (this.state.minutes > 1) {
-      this.setState((prevState) => ({
-        minutes: prevState.minutes - 1
-      }));
+      if(!this.state.active){
+        this.setState((prevState) => ({
+          minutes: prevState.minutes - 1,
+          minutesSeconds: (prevState.minutes - 1)*60,
+          timeDisplayed: timeFormat((prevState.minutes - 1)*60)
+        }))
+      }else{
+        if(this.state.session === 'break'){
+          this.setState((prevState) => ({
+            minutes: prevState.minutes - 1,
+            minutesSeconds: (prevState.minutes - 1)*60,
+          }))
+        }else{
+          this.setState((prevState) => ({
+            minutes: prevState.minutes - 1,
+          }))
+        }
+      }
     }
   }
 
   breakIncrement() {
     if (this.state.breaks < 60) {
-      this.setState((prevState) => ({
-        breaks: prevState.breaks + 1
-      }));
+      if(!this.state.active){
+        this.setState((prevState) => ({
+          breaks: prevState.breaks + 1,
+          breaksSeconds: (prevState.breaks + 1)*60,
+          timeDisplayed: timeFormat((prevState.breaks + 1)*60)
+        }))
+      }else{
+        if(this.state.session === 'session'){
+          this.setState((prevState) => ({
+            breaks: prevState.breaks + 1,
+            breaksSeconds: (prevState.breaks + 1)*60,
+          }))
+        }else{
+          this.setState((prevState) => ({
+            breaks: prevState.breaks + 1,
+          }))
+        }
+      }
     }
   }
 
   breakDecrement() {
     if (this.state.breaks > 1) {
-      this.setState((prevState) => ({
-        breaks: prevState.breaks - 1
-      }));
+      if(!this.state.active){
+        this.setState((prevState) => ({
+          breaks: prevState.breaks - 1,
+          breaksSeconds: (prevState.breaks - 1)*60,
+          timeDisplayed: timeFormat((prevState.breaks - 1)*60)
+        }))
+      }else{
+        if(this.state.session === 'session'){
+          this.setState((prevState) => ({
+            breaks: prevState.breaks - 1,
+            breaksSeconds: (prevState.breaks - 1)*60,
+          }))
+        }else{
+          this.setState((prevState) => ({
+            breaks: prevState.breaks - 1,
+          }))
+        }
+      }
     }
   }
   // RESETS TO ORIGINAL STATE
