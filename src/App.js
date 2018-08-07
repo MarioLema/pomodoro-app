@@ -15,6 +15,8 @@ let counter, breakCounter;
       num % 60 >= 10 ? `0${Math.floor(num/60)}:${num % 60}` :
                        `0${Math.floor(num/60)}:0${num % 60}`)
   };
+
+
 //=====================CLOCK CLASS CONTAINER=========================
 class Clock extends Component {
   constructor(props) {
@@ -31,7 +33,7 @@ class Clock extends Component {
       icon: "",
       active: false
     };
-
+    
     this.togglePlay = this.togglePlay.bind(this);
     this.startPlay = this.startPlay.bind(this);
     this.pausePlay = this.pausePlay.bind(this);
