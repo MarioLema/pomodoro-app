@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import mp3_file from './birds.mp3';
 
 
 //COUNTERS FOR SETINTERVALS
@@ -20,7 +20,7 @@ class Clock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buzz: "",
+      buzz: new Audio(mp3_file),
       breaks: 5,
       breaksSeconds: 300,
       minutes: 25,
@@ -53,7 +53,7 @@ class Clock extends Component {
         }));
     }else{
       clearInterval(counter);
-      //stop buzzer
+      this.state.buzz.play();
       this.setState( (prevState) => ({
         minutesSeconds: prevState.minutes * 60,
         session: 'break'
@@ -70,6 +70,7 @@ class Clock extends Component {
       }));
     } else {
       clearInterval(breakCounter);
+      this.state.buzz.play();
       this.setState( (prevState) => ({
         breaksSeconds: prevState.breaks * 60,
         session: 'session'
