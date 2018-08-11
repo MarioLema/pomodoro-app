@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import './App.css';
-import mp3_file from './birds.mp3';
-
+import React, { Component } from "react";
+import "./App.css";
+import mp3_file from "./birds.mp3";
+import play from "./play.png";
+import pause from "./pause.png";
+import redo from "./redo.png";
 
 //COUNTERS FOR SETINTERVALS
 let counter, breakCounter;
 
 //FUNCTION TO TRANSFORM SECONDS INTO TIME FORMAT STRING
-  function timeFormat(num){
-    return (
-    num >= 600 ? 
-      num % 60 >= 10 ? `${Math.floor(num/60)}:${num % 60}`  : 
-                       `${Math.floor(num/60)}:0${num % 60}` :
-      num % 60 >= 10 ? `0${Math.floor(num/60)}:${num % 60}` :
-                       `0${Math.floor(num/60)}:0${num % 60}`)
-  };
-
+function timeFormat(num) {
+  return num >= 600
+    ? num % 60 >= 10
+      ? `${Math.floor(num / 60)}:${num % 60}`
+      : `${Math.floor(num / 60)}:0${num % 60}`
+    : num % 60 >= 10
+      ? `0${Math.floor(num / 60)}:${num % 60}`
+      : `0${Math.floor(num / 60)}:0${num % 60}`;
+}
 
 //=====================CLOCK CLASS CONTAINER=========================
 class Clock extends Component {
@@ -30,10 +32,10 @@ class Clock extends Component {
       timeDisplayed: "25:00",
       playing: false,
       session: "session",
-      icon: "",
+      icon: play,
       active: false
     };
-    
+
     this.togglePlay = this.togglePlay.bind(this);
     this.startPlay = this.startPlay.bind(this);
     this.pausePlay = this.pausePlay.bind(this);
@@ -46,19 +48,19 @@ class Clock extends Component {
     this.resetState = this.resetState.bind(this);
   }
 
-// TIMER METHODS TO RUN THE INTERVALS
+  // TIMER METHODS TO RUN THE INTERVALS
   timer() {
-    if(this.state.minutesSeconds > 0){
-        this.setState((prevState) => ({
-          minutesSeconds: prevState.minutesSeconds - 1,
-          timeDisplayed: timeFormat(prevState.minutesSeconds - 1)
-        }));
-    }else{
+    if (this.state.minutesSeconds > 0) {
+      this.setState(prevState => ({
+        minutesSeconds: prevState.minutesSeconds - 1,
+        timeDisplayed: timeFormat(prevState.minutesSeconds - 1)
+      }));
+    } else {
       clearInterval(counter);
       this.state.buzz.play();
-      this.setState( (prevState) => ({
+      this.setState(prevState => ({
         minutesSeconds: prevState.minutes * 60,
-        session: 'break'
+        session: "break"
       }));
       breakCounter = setInterval(this.timerBreak, 1000);
     }
@@ -66,48 +68,50 @@ class Clock extends Component {
 
   timerBreak() {
     if (this.state.breaksSeconds > 0) {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         breaksSeconds: prevState.breaksSeconds - 1,
         timeDisplayed: timeFormat(prevState.breaksSeconds - 1)
       }));
     } else {
       clearInterval(breakCounter);
       this.state.buzz.play();
-      this.setState( (prevState) => ({
+      this.setState(prevState => ({
         breaksSeconds: prevState.breaks * 60,
-        session: 'session'
+        session: "session"
       }));
       counter = setInterval(this.timer, 1000);
     }
   }
 
   //PLAY AND PAUSE METHODS TO SET INTERVALS
-  startPlay(){
-    if(!this.state.active){
+  startPlay() {
+    if (!this.state.active) {
       this.setState(() => ({
         playing: true,
-        icon: 'whatever to start',
+        icon: pause,
         active: true
       }));
-    }else{
+    } else {
       this.setState(() => ({
         playing: true,
-        icon: 'whatever to start'
+        icon: pause
       }));
     }
-    this.state.session === 'session' ? counter = setInterval(this.timer,1000) : breakCounter = setInterval(this.timerBreak,1000);
+    this.state.session === "session"
+      ? (counter = setInterval(this.timer, 1000))
+      : (breakCounter = setInterval(this.timerBreak, 1000));
   }
-  pausePlay(){
+  pausePlay() {
     this.setState(() => ({
       playing: false,
-      icon: 'whatever to pause'
+      icon: play
     }));
-    this.state.session === 'session' ? clearInterval(counter) :  clearInterval(breakCounter);
+    this.state.session === "session"
+      ? clearInterval(counter)
+      : clearInterval(breakCounter);
   }
 
-
-
-//TOGGLES BETWEEN PLAY AND PAUSE
+  //TOGGLES BETWEEN PLAY AND PAUSE
   togglePlay() {
     this.state.playing === false ? this.startPlay() : this.pausePlay();
   }
@@ -115,44 +119,44 @@ class Clock extends Component {
   //HANDLE COUNTERS FOR BREAKS AND WORK MINUTES
   sessionIncrement() {
     if (this.state.minutes < 60) {
-      if(!this.state.active){
-        this.setState((prevState) => ({
+      if (!this.state.active) {
+        this.setState(prevState => ({
           minutes: prevState.minutes + 1,
-          minutesSeconds: (prevState.minutes + 1)*60,
-          timeDisplayed: timeFormat((prevState.minutes + 1)*60)
-        }))
-      }else{
-        if(this.state.session === 'break'){
-          this.setState((prevState) => ({
+          minutesSeconds: (prevState.minutes + 1) * 60,
+          timeDisplayed: timeFormat((prevState.minutes + 1) * 60)
+        }));
+      } else {
+        if (this.state.session === "break") {
+          this.setState(prevState => ({
             minutes: prevState.minutes + 1,
-            minutesSeconds: (prevState.minutes + 1)*60,
-          }))
-        }else{
-          this.setState((prevState) => ({
-            minutes: prevState.minutes + 1,
-          }))
+            minutesSeconds: (prevState.minutes + 1) * 60
+          }));
+        } else {
+          this.setState(prevState => ({
+            minutes: prevState.minutes + 1
+          }));
         }
       }
-  }
+    }
   }
   sessionDecrement() {
     if (this.state.minutes > 1) {
-      if(!this.state.active){
-        this.setState((prevState) => ({
+      if (!this.state.active) {
+        this.setState(prevState => ({
           minutes: prevState.minutes - 1,
-          minutesSeconds: (prevState.minutes - 1)*60,
-          timeDisplayed: timeFormat((prevState.minutes - 1)*60)
-        }))
-      }else{
-        if(this.state.session === 'break'){
-          this.setState((prevState) => ({
+          minutesSeconds: (prevState.minutes - 1) * 60,
+          timeDisplayed: timeFormat((prevState.minutes - 1) * 60)
+        }));
+      } else {
+        if (this.state.session === "break") {
+          this.setState(prevState => ({
             minutes: prevState.minutes - 1,
-            minutesSeconds: (prevState.minutes - 1)*60,
-          }))
-        }else{
-          this.setState((prevState) => ({
-            minutes: prevState.minutes - 1,
-          }))
+            minutesSeconds: (prevState.minutes - 1) * 60
+          }));
+        } else {
+          this.setState(prevState => ({
+            minutes: prevState.minutes - 1
+          }));
         }
       }
     }
@@ -160,22 +164,22 @@ class Clock extends Component {
 
   breakIncrement() {
     if (this.state.breaks < 60) {
-      if(!this.state.active){
-        this.setState((prevState) => ({
+      if (!this.state.active) {
+        this.setState(prevState => ({
           breaks: prevState.breaks + 1,
-          breaksSeconds: (prevState.breaks + 1)*60,
-          timeDisplayed: timeFormat((prevState.breaks + 1)*60)
-        }))
-      }else{
-        if(this.state.session === 'session'){
-          this.setState((prevState) => ({
+          breaksSeconds: (prevState.breaks + 1) * 60,
+          timeDisplayed: timeFormat((prevState.breaks + 1) * 60)
+        }));
+      } else {
+        if (this.state.session === "session") {
+          this.setState(prevState => ({
             breaks: prevState.breaks + 1,
-            breaksSeconds: (prevState.breaks + 1)*60,
-          }))
-        }else{
-          this.setState((prevState) => ({
-            breaks: prevState.breaks + 1,
-          }))
+            breaksSeconds: (prevState.breaks + 1) * 60
+          }));
+        } else {
+          this.setState(prevState => ({
+            breaks: prevState.breaks + 1
+          }));
         }
       }
     }
@@ -183,22 +187,22 @@ class Clock extends Component {
 
   breakDecrement() {
     if (this.state.breaks > 1) {
-      if(!this.state.active){
-        this.setState((prevState) => ({
+      if (!this.state.active) {
+        this.setState(prevState => ({
           breaks: prevState.breaks - 1,
-          breaksSeconds: (prevState.breaks - 1)*60,
-          timeDisplayed: timeFormat((prevState.breaks - 1)*60)
-        }))
-      }else{
-        if(this.state.session === 'session'){
-          this.setState((prevState) => ({
+          breaksSeconds: (prevState.breaks - 1) * 60,
+          timeDisplayed: timeFormat((prevState.breaks - 1) * 60)
+        }));
+      } else {
+        if (this.state.session === "session") {
+          this.setState(prevState => ({
             breaks: prevState.breaks - 1,
-            breaksSeconds: (prevState.breaks - 1)*60,
-          }))
-        }else{
-          this.setState((prevState) => ({
-            breaks: prevState.breaks - 1,
-          }))
+            breaksSeconds: (prevState.breaks - 1) * 60
+          }));
+        } else {
+          this.setState(prevState => ({
+            breaks: prevState.breaks - 1
+          }));
         }
       }
     }
@@ -209,7 +213,7 @@ class Clock extends Component {
     clearInterval(breakCounter);
     //  buzz.pause();
     // buzz.currentTime = 0;
-    this.setState( () => ({
+    this.setState(() => ({
       playing: false,
       active: false,
       breaks: 5,
@@ -218,7 +222,7 @@ class Clock extends Component {
       breaksSeconds: 600,
       session: "session",
       icon: "icon HTML",
-      timeDisplayed: '25:00'
+      timeDisplayed: "25:00"
     }));
   }
 
@@ -272,10 +276,10 @@ class Clock extends Component {
           {this.state.timeDisplayed}
         </div>
         <div className="bubble btn" id="start_stop" onClick={this.togglePlay}>
-          <i className="fas fa-play" />
+          <img src={this.state.icon} class="icon" alt='play/pause'/>
         </div>
         <div className="bubble btn" id="reset" onClick={this.resetState}>
-          <i className="fas fa-redo" />
+          <img src={redo} class="icon" alt='reverse'/>
         </div>
 
         <div className="background northWest" id="back1" />
@@ -309,4 +313,4 @@ class Clock extends Component {
   }
 }
 
-export default Clock
+export default Clock;
