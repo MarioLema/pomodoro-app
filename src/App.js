@@ -276,13 +276,14 @@ class Clock extends Component {
           {this.state.timeDisplayed}
         </div>
         <div className="bubble btn" id="start_stop" onClick={this.togglePlay}>
-          <img src={this.state.icon} class="icon" alt='play/pause'/>
+          <img src={this.state.icon} className="icon" alt='play/pause'/>
         </div>
         <div className="bubble btn" id="reset" onClick={this.resetState}>
-          <img src={redo} class="icon" alt='reverse'/>
+          <img src={redo} className="icon" alt='reverse'/>
         </div>
+        <Background />
 
-        <div className="background northWest" id="back1" />
+        {/* <div className="background northWest" id="back1" />
         <div className="background east" id="back2" />
         <div className="background southEast" id="back3" />
         <div className="background southWest" id="back4" />
@@ -307,10 +308,47 @@ class Clock extends Component {
         <div className="background east" id="back23" />
         <div className="background north" id="back24" />
         <div className="background northEast" id="back25" />
-        <div className="background north" id="back26" />
+        <div className="background north" id="back26" /> */}
       </div>
     );
   }
+}
+
+let colors = [
+  'rgba(217, 221, 146, 0.8)',
+  'rgba(102, 161, 130, 0.6)',
+  'rgba(174, 247, 142, 0.7)',
+  'rgba(68, 118, 4, 0.5)',
+  'rgba(238, 198, 67, 0.5)',
+  'rgba(217, 229, 214, 0.5)',
+]
+
+class Background extends Component{
+  creator(){
+    let baubles = [];
+    for(let i = 1; i < 70; i++){
+      let radius = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
+      let style = {
+        background: colors[Math.floor(Math.random() * 7)],
+        width: radius,
+        height: radius,
+        left: Math.floor(Math.random() * (90 - (-30) + 1)) + (-30) + '%',
+        top:  Math.floor(Math.random() * (90 - (-30) + 1)) + (-30) + '%',
+        animation: `${Math.floor(Math.random() * (60 - 46) + 1 ) + 46}s linear 0s infinite alternate floating${Math.ceil(Math.random() * 8)}`
+      }
+      baubles.push(<div className='backgroundBauble' style={style} key={'bauble' + i}></div>);
+    }
+    return baubles;
+  }
+
+  render(){
+    return (
+      <div>
+      {this.creator()}
+      </div>
+    )
+
+}
 }
 
 export default Clock;
