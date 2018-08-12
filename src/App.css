@@ -30,27 +30,28 @@ footer {
   color: #151e3f;
 } */
 /*ROOT ELEMENT*/
-#root{
-  width: 90vw;
-  height: 40vw;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  margin-bottom: -50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  border: solid white 5px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: white;
+#root {
+	width: 1000px;
+	height: 400px;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	margin-bottom: -50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	border: solid #151e3f 3px;
+	border-radius: 20px;
+	overflow: hidden;
+	background: #fff0d9;
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.46);
 }
 /*POMODORO CLOCK*/
 #pomodoro {
-  width: 40vw;
-  height: 40vw;
-  display: grid;
+  /* width: 1000px;
+  height: 900px; */
+  /* display: grid;
   grid-template-columns: repeat(100, 1fr);
-  grid-template-rows: repeat(100, 1fr);
+  grid-template-rows: repeat(100, 1fr); */
   color: white;
 }
 /*POMODORO CONTROLS*/
@@ -60,6 +61,7 @@ footer {
   align-items: center;
   justify-content: center;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.9), 0px 0px 5px rgba(0, 0, 0, 0.4);
+  position: absolute;
 }
 .btn {
   font-size: 400%;
@@ -72,100 +74,126 @@ footer {
   z-index: 20;
 }
 #time-left {
-  grid-column: 30/70;
-  grid-row: 30/70;
-  background: #151e3f;
-  font-size: 400%;
-  z-index: 10;
+	background: #151e3f;
+	font-size: 400%;
+	z-index: 10;
+	top: 44%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 250px;
+	width: 250px;
 }
 #start_stop {
-  grid-column: 42/58;
-  grid-row: 64/80;
-  background: #cc5803;
-  z-index: 15;
-  cursor: pointer;
+	background: #cc5803;
+	z-index: 15;
+	cursor: pointer;
+	top: 81%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 100px;
+	width: 100px;
 }
 #reset {
-  grid-column: 36/46;
-  grid-row: 61/71;
-  background: #f7b05b;
-  z-index: 15;
-  cursor: pointer;
+	background: #f7b05b;
+	z-index: 15;
+	cursor: pointer;
+	height: 70px;
+	width: 70px;
+	left: 40%;
+	top: 61%;
 }
 #break-label {
-  grid-column: 5/25;
-  grid-row: 40/60;
-  background: #cc5803;
-  z-index: 10;
-  font-size: 200%;
+	background: #cc5803;
+	z-index: 10;
+	font-size: 200%;
+	height: 130px;
+	width: 130px;
+	left: 11%;
+	top: 22%;
 }
 #session-label {
-  grid-column: 65/85;
-  grid-row: 20/40;
-  background: #cc5803;
-  z-index: 10;
-  font-size: 200%;
+	background: #cc5803;
+	z-index: 10;
+	font-size: 200%;
+	height: 130px;
+	width: 130px;
+	left: 70%;
+	top: 24%;
 }
 #break-increment {
-  grid-column: 2/10;
-  grid-row: 38/46;
-  background: #151e3f;
-  z-index: 5;
-  cursor: pointer;
+	background: #151e3f;
+	z-index: 5;
+	cursor: pointer;
+	height: 50px;
+	width: 50px;
+	left: 8%;
+	top: 23%;
 }
 #break-increment:hover {
   z-index: 10;
 }
 #break-decrement {
-  grid-column: 2/10;
-  grid-row: 52/60;
-  background: #151e3f;
-  z-index: 5;
-  cursor: pointer;
+	background: #151e3f;
+	z-index: 5;
+	cursor: pointer;
+	height: 50px;
+	width: 50px;
+	left: 9%;
+	top: 46%;
 }
 #break-decrement:hover {
   z-index: 10;
 }
 #session-increment {
-  grid-column: 82/90;
-  grid-row: 20/28;
-  background: #151e3f;
-  z-index: 5;
-  cursor: pointer;
+	background: #151e3f;
+	z-index: 5;
+	cursor: pointer;
+	height: 50px;
+	width: 50px;
+	left: 80%;
+	top: 21%;
 }
 #session-increment:hover {
   z-index: 10;
 }
 #session-decrement {
-  grid-column: 82/90;
-  grid-row: 32/40;
-  background: #151e3f;
-  z-index: 5;
-  cursor: pointer;
+	background: #151e3f;
+	z-index: 5;
+	cursor: pointer;
+	height: 50px;
+	width: 50px;
+	left: 80%;
+	top: 47%;
 }
 #session-decrement:hover {
   z-index: 10;
 }
 #break-length {
-  grid-column: 20/32;
-  grid-row: 38/50;
-  background: #f7934c;
-  z-index: 15;
-  font-size: 150%;
+	background: #f7934c;
+	z-index: 15;
+	font-size: 150%;
+	height: 75px;
+	width: 75px;
+	left: 20%;
+	top: 14%;
 }
 #session-length {
-  grid-column: 58/70;
-  grid-row: 20/32;
-  background: #f7934c;
-  z-index: 15;
-  font-size: 150%;
+	background: #f7934c;
+	z-index: 15;
+	font-size: 150%;
+	height: 75px;
+	width: 75px;
+	left: 66%;
+	top: 44%;
 }
 #timer-label {
-  grid-column: 10/30;
-  grid-row: 65/85;
-  background: #f7934c;
-  z-index: 10;
-  font-size: 200%;
+	background: #f7934c;
+	z-index: 10;
+	font-size: 200%;
+	height: 130px;
+	width: 130px;
+	left: 21%;
+	top: 61%;
 }
 .icon{
   width: 50%;
@@ -192,54 +220,54 @@ footer {
 }
 @keyframes floating2 {
   0% { transform: translate(0px, 0px) }
-  10% { transform: translate(87, 52%) }
-  20% { transform: translate(67%, -69%) }
-  30% { transform: translate(100%, -44%) }
-  40% { transform: translate(-26%, 17%) }
-  50% { transform: translate(23%, 75%) }
-  60% { transform: translate(44%, -2%) }
-  70% { transform: translate(2%, 70%) }
-  80% { transform: translate(-23%, 86%) }
-  90% { transform: translate(96%, -77%) }
+  15% { transform: translate(87, 52%) }
+  25% { transform: translate(67%, -69%) }
+  35% { transform: translate(100%, -44%) }
+  45% { transform: translate(-26%, 17%) }
+  55% { transform: translate(23%, 75%) }
+  65% { transform: translate(44%, -2%) }
+  75% { transform: translate(2%, 70%) }
+  85% { transform: translate(-23%, 86%) }
+  95% { transform: translate(96%, -77%) }
   100% { transform: translate(0%,  0%) }
 }
 @keyframes floating3 {
   0% { transform: translate(0px, 0px) }
-  10% { transform: translate(54%, 44%) }
-  20% { transform: translate(27%, -16%) }
-  30% { transform: translate(-34%, 2%) }
-  40% { transform: translate(94%, 72%) }
-  50% { transform: translate(-43%, -12%) }
-  60% { transform: translate(81%, 7%) }
-  70% { transform: translate(60%, -54%) }
-  80% { transform: translate(-33%, 50%) }
-  90% { transform: translate(80%, 23%) }
+  13% { transform: translate(54%, 44%) }
+  23% { transform: translate(27%, -16%) }
+  33% { transform: translate(-34%, 2%) }
+  43% { transform: translate(94%, 72%) }
+  53% { transform: translate(-43%, -12%) }
+  63% { transform: translate(81%, 7%) }
+  73% { transform: translate(60%, -54%) }
+  83% { transform: translate(-33%, 50%) }
+  93% { transform: translate(80%, 23%) }
   100% { transform: translate(0%,  0%) }
 }
 @keyframes floating4 {
   0% { transform: translate(0px, 0px) }
-  10% { transform: translate(48%, 71%) }
-  20% { transform: translate(45%, -85%) }
-  30% { transform: translate(-57%, 50%) }
-  40% { transform: translate(3%, 62%) }
-  50% { transform: translate(-39%, -98%) }
-  60% { transform: translate(4%, 51%) }
-  70% { transform: translate(21%, -14%) }
-  80% { transform: translate(-94%, 59%) }
-  90% { transform: translate(31%, 94%) }
+  17% { transform: translate(48%, 71%) }
+  27% { transform: translate(45%, -85%) }
+  37% { transform: translate(-57%, 50%) }
+  47% { transform: translate(3%, 62%) }
+  57% { transform: translate(-39%, -98%) }
+  67% { transform: translate(4%, 51%) }
+  77% { transform: translate(21%, -14%) }
+  87% { transform: translate(-94%, 59%) }
+  97% { transform: translate(31%, 94%) }
   100% { transform: translate(0%,  0%) }
 }
 @keyframes floating5 {
   0% { transform: translate(0px, 0px) }
-  10% { transform: translate(39%, 61%) }
-  20% { transform: translate(23%, -64%) }
-  30% { transform: translate(-35%, 80%) }
-  40% { transform: translate(90%, 7%) }
-  50% { transform: translate(-8%, -29%) }
-  60% { transform: translate(39%, 91%) }
-  70% { transform: translate(4%, -31%) }
-  80% { transform: translate(-6%, 49%) }
-  90% { transform: translate(26%, 49%) }
+  11% { transform: translate(39%, 61%) }
+  21% { transform: translate(23%, -64%) }
+  31% { transform: translate(-35%, 80%) }
+  41% { transform: translate(90%, 7%) }
+  51% { transform: translate(-8%, -29%) }
+  61% { transform: translate(39%, 91%) }
+  71% { transform: translate(4%, -31%) }
+  81% { transform: translate(-6%, 49%) }
+  91% { transform: translate(26%, 49%) }
   100% { transform: translate(0%,  0%) }
 }
 @keyframes floating6 {

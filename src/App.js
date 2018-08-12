@@ -221,13 +221,14 @@ class Clock extends Component {
       minutesSeconds: 1500,
       breaksSeconds: 600,
       session: "session",
-      icon: "icon HTML",
+      icon: play,
       timeDisplayed: "25:00"
     }));
   }
 
   render() {
     return (
+      <React.Fragment>
       <div id="pomodoro">
         <div className="bubble" id="break-label">
           Breaks
@@ -281,46 +282,20 @@ class Clock extends Component {
         <div className="bubble btn" id="reset" onClick={this.resetState}>
           <img src={redo} className="icon" alt='reverse'/>
         </div>
-        <Background />
-
-        {/* <div className="background northWest" id="back1" />
-        <div className="background east" id="back2" />
-        <div className="background southEast" id="back3" />
-        <div className="background southWest" id="back4" />
-        <div className="background north" id="back5" />
-        <div className="background west" id="back6" />
-        <div className="background northWest" id="back7" />
-        <div className="background east" id="back8" />
-        <div className="background southEast" id="back9" />
-        <div className="background south" id="back10" />
-        <div className="background southWest" id="back11" />
-        <div className="background south" id="back12" />
-        <div className="background south" id="back13" />
-        <div className="background southEast" id="back14" />
-        <div className="background southEast" id="back15" />
-        <div className="background northEast" id="back16" />
-        <div className="background northWest" id="back17" />
-        <div className="background north" id="back18" />
-        <div className="background northWest" id="back19" />
-        <div className="background west" id="back20" />
-        <div className="background east" id="back21" />
-        <div className="background northEast" id="back22" />
-        <div className="background east" id="back23" />
-        <div className="background north" id="back24" />
-        <div className="background northEast" id="back25" />
-        <div className="background north" id="back26" /> */}
       </div>
+      <Background />
+      </React.Fragment>
     );
   }
 }
 
 let colors = [
-  'rgba(217, 221, 146, 0.8)',
-  'rgba(102, 161, 130, 0.6)',
-  'rgba(174, 247, 142, 0.7)',
-  'rgba(68, 118, 4, 0.5)',
-  'rgba(238, 198, 67, 0.5)',
-  'rgba(217, 229, 214, 0.5)',
+  'rgba(217, 221, 146, 0.7)',
+  'rgba(102, 161, 130, 0.5)',
+  'rgba(174, 247, 142, 0.6)',
+  'rgba(68, 118, 4, 0.4)',
+  'rgba(238, 198, 67, 0.4)',
+  'rgba(217, 229, 214, 0.4)',
 ]
 
 class Background extends Component{
