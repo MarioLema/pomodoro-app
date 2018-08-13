@@ -9,49 +9,38 @@ body {
   background-size: cover;
   background: #e4e7ff;
 }
-/* header {
-  width: 100%;
-  text-align: center;
-  height: 20px;
-  font-size: 200%;
-  font-weight: bold;
-  position: fixed;
-  top: 10px;
-  color: #151e3f;
-}
-footer {
-  width: 100%;
-  text-align: center;
-  height: 20px;
-  font-size: 200%;
-  font-weight: bold;
-  position: fixed;
-  bottom: 20px;
-  color: #151e3f;
-} */
 /*ROOT ELEMENT*/
 #root {
 	width: 1000px;
 	height: 400px;
-	top: 50%;
-	left: 50%;
-	margin-right: -50%;
-	margin-bottom: -50%;
-	transform: translate(-50%, -50%);
-	position: absolute;
+	transform: translate(0%, 0%);
 	border: solid #151e3f 3px;
 	border-radius: 20px;
 	overflow: hidden;
 	background: #fff0d9;
 	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.46);
+	margin: auto;
+	margin-top: 50px;
+}
+#intro {
+	width: 80%;
+	margin: auto;
+	margin-top: 50px;
+	text-align: center;
+	background: #151e3f33;
+	color: black;
+	padding: 30px;
+  border-radius: 20px;
+  line-height: 27px;
+}
+#intro p {
+  font-family: Arial;
+}
+#intro h1 {
+  margin-bottom: 20px;
 }
 /*POMODORO CLOCK*/
 #pomodoro {
-  /* width: 1000px;
-  height: 900px; */
-  /* display: grid;
-  grid-template-columns: repeat(100, 1fr);
-  grid-template-rows: repeat(100, 1fr); */
   color: white;
 }
 /*POMODORO CONTROLS*/

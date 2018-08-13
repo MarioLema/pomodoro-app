@@ -4,31 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
+
     <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-        crossorigin="anonymous"></script>
-    <audio id='beep' src='https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3'></audio>
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Pomodoro Clock</title>
+    <title>Pomodoro Timer</title>
   </head>
   <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
+    <div id='intro'>
+    <h1>POMODORO TIMER</h1>
+    <p>The Pomodoro timer is a well-known productivity interval that has been shown to improve productivity.<br> 
+      It gives you a defined interval of work time followed by a defined break.
+      If you want to get started on a Pomodoro Timer, just click the Play button. <br>
+      You can change the length of both break and work time anytime their respective counters are not running.<br>
+    </p>
+    </div>
     <div id="root"></div>
   </body>
 </html>

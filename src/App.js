@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import "./App.css";
 import mp3_file from "./birds.mp3";
 import play from "./play.png";
@@ -33,7 +33,15 @@ class Clock extends Component {
       playing: false,
       session: "session",
       icon: play,
-      active: false
+      active: false,
+      colors: [
+        'rgba(217, 221, 146, 0.7)',
+        'rgba(102, 161, 130, 0.5)',
+        'rgba(174, 247, 142, 0.6)',
+        'rgba(68, 118, 4, 0.4)',
+        'rgba(238, 198, 67, 0.4)',
+        'rgba(217, 229, 214, 0.4)',
+      ]
     };
 
     this.togglePlay = this.togglePlay.bind(this);
@@ -168,7 +176,6 @@ class Clock extends Component {
         this.setState(prevState => ({
           breaks: prevState.breaks + 1,
           breaksSeconds: (prevState.breaks + 1) * 60,
-          timeDisplayed: timeFormat((prevState.breaks + 1) * 60)
         }));
       } else {
         if (this.state.session === "session") {
@@ -191,7 +198,6 @@ class Clock extends Component {
         this.setState(prevState => ({
           breaks: prevState.breaks - 1,
           breaksSeconds: (prevState.breaks - 1) * 60,
-          timeDisplayed: timeFormat((prevState.breaks - 1) * 60)
         }));
       } else {
         if (this.state.session === "session") {
@@ -283,33 +289,39 @@ class Clock extends Component {
           <img src={redo} className="icon" alt='reverse'/>
         </div>
       </div>
-      <Background />
+      <Background colors={this.state.colors}/>
       </React.Fragment>
     );
   }
 }
 
-let colors = [
-  'rgba(217, 221, 146, 0.7)',
-  'rgba(102, 161, 130, 0.5)',
-  'rgba(174, 247, 142, 0.6)',
-  'rgba(68, 118, 4, 0.4)',
-  'rgba(238, 198, 67, 0.4)',
-  'rgba(217, 229, 214, 0.4)',
-]
+// let colors = [
+//   'rgba(217, 221, 146, 0.7)',
+//   'rgba(102, 161, 130, 0.5)',
+//   'rgba(174, 247, 142, 0.6)',
+//   'rgba(68, 118, 4, 0.4)',
+//   'rgba(238, 198, 67, 0.4)',
+//   'rgba(217, 229, 214, 0.4)',
+// ]
 
-class Background extends Component{
+class Background extends PureComponent{
+  constructor(props){
+    super(props);
+    this.creator = this.creator.bind(this);
+  }
+
+
   creator(){
     let baubles = [];
     for(let i = 1; i < 70; i++){
       let radius = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
       let style = {
-        background: colors[Math.floor(Math.random() * 7)],
+        background: this.props.colors[Math.floor(Math.random() * 7)],
         width: radius,
         height: radius,
         left: Math.floor(Math.random() * (90 - (-30) + 1)) + (-30) + '%',
         top:  Math.floor(Math.random() * (90 - (-30) + 1)) + (-30) + '%',
-        animation: `${Math.floor(Math.random() * (60 - 46) + 1 ) + 46}s linear 0s infinite alternate floating${Math.ceil(Math.random() * 8)}`
+        animation: `${Math.floor(Math.random() * (70 - 46) + 1 ) + 46}s linear 0s infinite alternate floating${Math.ceil(Math.random() * 8)}`
       }
       baubles.push(<div className='backgroundBauble' style={style} key={'bauble' + i}></div>);
     }
