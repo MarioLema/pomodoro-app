@@ -295,14 +295,6 @@ class Clock extends Component {
   }
 }
 
-// let colors = [
-//   'rgba(217, 221, 146, 0.7)',
-//   'rgba(102, 161, 130, 0.5)',
-//   'rgba(174, 247, 142, 0.6)',
-//   'rgba(68, 118, 4, 0.4)',
-//   'rgba(238, 198, 67, 0.4)',
-//   'rgba(217, 229, 214, 0.4)',
-// ]
 
 class Background extends PureComponent{
   constructor(props){
@@ -313,7 +305,7 @@ class Background extends PureComponent{
 
   creator(){
     let baubles = [];
-    for(let i = 1; i < 70; i++){
+    for(let i = 1; i < 200; i++){
       let radius = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
       let style = {
         background: this.props.colors[Math.floor(Math.random() * 7)],
