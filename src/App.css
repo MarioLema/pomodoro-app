@@ -24,7 +24,8 @@ body {
 	-webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.46), 0px 0px 2px 1px rgba(0, 0, 0, 0.46);
 	        box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.46), 0px 0px 2px 1px rgba(0, 0, 0, 0.46);
 	margin: auto;
-	margin-top: 50px;
+  margin-top: 50px;
+  margin-bottom:100px !important;
 }
 #intro {
 	width: 80%;
